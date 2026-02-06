@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <title>Calculadora Shopee</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<div class="container">
+  <h1>Calculadora de Venda</h1>
+
+  <!-- MATERIAL -->
+  <h2 class="bloco-material">Material</h2>
+
+  <label>Peso da Peça (gramas)</label>
+  <input type="number" id="peso" step="0.1">
+
+  <label>Filamento KG (R$)</label>
+  <input type="number" id="valorKg" step="0.01" value="130.00">
+
+  <label>Custo da Embalagem (R$)</label>
+  <input type="number" id="embalagem" step="0.01" value="0">
+
+  <!-- LUCRO -->
+  <h2 class="bloco-lucro">Lucro</h2>
+
+  <label>Margem de Lucro Desejada (%)</label>
+  <input type="number" id="margem" value="100">
+
+  <!-- SHOPEE -->
+  <h2 class="bloco-shopee">Shopee</h2>
+
+  <label>Comissão Shopee (%)</label>
+  <input type="number" id="comissao" value="18">
+
+  <label>Taxa Fixa Shopee (R$)</label>
+  <input type="number" id="taxaFixa" step="0.01" value="4.26">
+
+  <!-- VENDA -->
+  <h2 class="bloco-venda">Venda</h2>
+
+  <label>Preço de Venda (R$)</label>
+  <input type="number" id="venda" step="0.01" placeholder="Gerado automaticamente se vazio">
+
+  <button onclick="calcular()">Calcular</button>
+
+  <!-- RESULTADO -->
+  <div class="resultado" id="resultado"></div>
+</div>
+
+<script src="script.js"></script>
+</body>
+</html>

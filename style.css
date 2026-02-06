@@ -1,0 +1,164 @@
+* {
+  box-sizing: border-box;
+}
+
+/* ===== BODY ===== */
+body {
+  font-family: Arial, Helvetica, sans-serif;
+  background-color: #f2f2f2;
+  padding: 40px;
+}
+
+/* ===== CONTAINER ===== */
+.container {
+  max-width: 460px;
+  margin: auto;
+  background: #ffffff;
+  padding: 25px;
+  border-radius: 10px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+}
+
+/* ===== TÍTULO PRINCIPAL ===== */
+h1 {
+  text-align: center;
+  color: #ee4d2d;
+  margin-bottom: 20px;
+}
+
+/* ===== TÍTULOS DOS BLOCOS ===== */
+h2 {
+  margin-top: 22px;
+  margin-bottom: 8px;
+  font-size: 16px;
+  padding-left: 8px;
+  border-left: 4px solid transparent;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+/* ===== CORES DOS TÍTULOS ===== */
+
+/* MATERIAL */
+.bloco-material {
+  color: #546e7a;
+  border-left-color: #546e7a;
+}
+
+/* LUCRO */
+.bloco-lucro {
+  color: #2e7d32;
+  border-left-color: #2e7d32;
+}
+
+/* SHOPEE */
+.bloco-shopee {
+  color: #e53935;
+  border-left-color: #e53935;
+}
+
+/* VENDA */
+.bloco-venda {
+  color: #1e88e5;
+  border-left-color: #1e88e5;
+}
+
+/* ===== LABELS ===== */
+label {
+  font-weight: 600;
+  margin-top: 12px;
+  display: block;
+  color: #333;
+  font-size: 14px;
+}
+
+/* ===== INPUTS ===== */
+input {
+  width: 100%;
+  padding: 8px;
+  margin-top: 6px;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+  font-size: 14px;
+}
+
+/* ===== BOTÃO ===== */
+button {
+  width: 100%;
+  margin-top: 25px;
+  padding: 12px;
+  background-color: #ee4d2d;
+  color: #ffffff;
+  border: none;
+  border-radius: 6px;
+  font-size: 16px;
+  font-weight: bold;
+  cursor: pointer;
+  letter-spacing: 0.5px;
+}
+
+button:hover {
+  background-color: #d84326;
+}
+
+/* ===== RESULTADO GERAL ===== */
+.resultado {
+  margin-top: 22px;
+  padding: 18px;
+  border-radius: 8px;
+  background-color: #f9f9f9;
+  line-height: 1.6;
+}
+
+/* ===== BLOCO RESULTADO: CUSTOS ===== */
+.resultado .custo {
+  font-size: 14px;
+  font-weight: 500;
+  color: #555;
+}
+
+/* ===== BLOCO RESULTADO: PREÇO ===== */
+.resultado .preco {
+  font-size: 17px;
+  font-weight: 700;
+  color: #1e88e5;
+  text-transform: uppercase;
+  letter-spacing: 0.6px;
+  margin-top: 8px;
+}
+
+/* ===== BLOCO RESULTADO: TAXAS ===== */
+.resultado .taxas {
+  font-size: 14px;
+  font-weight: 600;
+  color: #e53935;
+}
+
+/* ===== BLOCO RESULTADO: LÍQUIDO ===== */
+.resultado .liquido {
+  font-size: 15px;
+  font-weight: 600;
+  color: #6a1b9a;
+}
+
+/* ===== BLOCO RESULTADO: LUCRO ===== */
+.resultado .lucro {
+  font-size: 18px;
+  font-weight: 800;
+  color: #2e7d32;
+  text-transform: uppercase;
+  border-top: 1px dashed #ccc;
+  margin-top: 12px;
+  padding-top: 10px;
+}
+
+/* ===== RESPONSIVO ===== */
+@media (max-width: 500px) {
+  body {
+    padding: 20px;
+  }
+
+  .container {
+    padding: 20px;
+  }
+}
