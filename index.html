@@ -2,52 +2,214 @@
 <html lang="pt-BR">
 <head>
   <meta charset="UTF-8">
-  <title>Calculadora Shopee</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Gestão Shopee 3D</title>
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
-<div class="container">
-  <h1>Calculadora de Venda</h1>
+<div class="layout">
 
-  <!-- MATERIAL -->
-  <h2 class="bloco-material">Material</h2>
+  <!-- MENU LATERAL -->
+  <aside class="sidebar">
+    <div class="logo">
+      <h2>🛒 Gestão Shopee</h2>
+      <p>Painel de vendas</p>
+    </div>
 
-  <label>Peso da Peça (gramas)</label>
-  <input type="number" id="peso" step="0.1">
+    <nav class="menu">
+      <button class="menu-btn active" onclick="abrirPagina('dashboard', this)">
+        📊 Dashboard
+      </button>
 
-  <label>Filamento KG (R$)</label>
-  <input type="number" id="valorKg" step="0.01" value="130.00">
+      <button class="menu-btn" onclick="abrirPagina('calculadora', this)">
+        🧮 Calculadora de Venda
+      </button>
 
-  <label>Custo da Embalagem (R$)</label>
-  <input type="number" id="embalagem" step="0.01" value="0">
+      <button class="menu-btn" onclick="abrirPagina('produtos', this)">
+        📦 Cadastro de Produtos
+      </button>
 
-  <!-- LUCRO -->
-  <h2 class="bloco-lucro">Lucro</h2>
+      <button class="menu-btn" onclick="abrirPagina('pedidos', this)">
+        🧾 Pedidos Shopee
+      </button>
+    </nav>
+  </aside>
 
-  <label>Margem de Lucro Desejada (%)</label>
-  <input type="number" id="margem" value="100">
+  <!-- CONTEÚDO -->
+  <main class="conteudo">
 
-  <!-- SHOPEE -->
-  <h2 class="bloco-shopee">Shopee</h2>
+    <!-- TOPO -->
+    <header class="topbar">
+      <h1 id="tituloPagina">Dashboard</h1>
+    </header>
 
-  <label>Comissão Shopee (%)</label>
-  <input type="number" id="comissao" value="20">
+    <!-- DASHBOARD -->
+    <section id="dashboard" class="pagina ativa">
+      <div class="cards">
 
-  <label>Taxa Fixa Shopee (R$)</label>
-  <input type="number" id="taxaFixa" step="0.01" value="4.30">
+        <div class="card">
+          <h3>Produtos</h3>
+          <p id="totalProdutos">0</p>
+        </div>
 
-  <!-- VENDA -->
-  <h2 class="bloco-venda">Venda</h2>
+        <div class="card">
+          <h3>Pedidos</h3>
+          <p id="totalPedidos">0</p>
+        </div>
 
-  <label>Preço de Venda (R$)</label>
-  <input type="number" id="venda" step="0.01" placeholder="Gerado automaticamente se vazio">
+        <div class="card">
+          <h3>Qtd Vendida</h3>
+          <p id="totalQuantidade">0</p>
+        </div>
 
-  <button onclick="calcular()">Calcular</button>
+        <div class="card destaque">
+          <h3>Faturamento</h3>
+          <p id="totalFaturamento">R$ 0,00</p>
+        </div>
 
-  <!-- RESULTADO -->
-  <div class="resultado" id="resultado"></div>
+      </div>
+    </section>
+
+    <!-- CALCULADORA -->
+    <section id="calculadora" class="pagina">
+      <div class="container">
+        <h1>Calculadora de Venda</h1>
+
+        <!-- MATERIAL -->
+        <h2 class="bloco-material">Material</h2>
+
+        <label>Peso da Peça (gramas)</label>
+        <input type="number" id="peso" step="0.1">
+
+        <label>Filamento KG (R$)</label>
+        <input type="number" id="valorKg" step="0.01" value="130.00">
+
+        <label>Custo da Embalagem (R$)</label>
+        <input type="number" id="embalagem" step="0.01" value="0">
+
+        <!-- LUCRO -->
+        <h2 class="bloco-lucro">Lucro</h2>
+
+        <label>Margem de Lucro Desejada (%)</label>
+        <input type="number" id="margem" value="100">
+
+        <!-- SHOPEE -->
+        <h2 class="bloco-shopee">Shopee</h2>
+
+        <label>Comissão Shopee (%)</label>
+        <input type="number" id="comissao" value="20">
+
+        <label>Taxa Fixa Shopee (R$)</label>
+        <input type="number" id="taxaFixa" step="0.01" value="4.30">
+
+        <!-- VENDA -->
+        <h2 class="bloco-venda">Venda</h2>
+
+        <label>Preço de Venda (R$)</label>
+        <input type="number" id="venda" step="0.01">
+
+        <button onclick="calcular()">Calcular</button>
+
+        <div class="resultado" id="resultado"></div>
+      </div>
+    </section>
+
+    <!-- PRODUTOS -->
+    <section id="produtos" class="pagina">
+      <div class="container">
+        <h1>Cadastro de Produtos</h1>
+
+        <label>Nome do Produto</label>
+        <input type="text" id="produtoNome">
+
+        <label>SKU / Código</label>
+        <input type="text" id="produtoSku">
+
+        <label>Custo (R$)</label>
+        <input type="number" id="produtoCusto">
+
+        <label>Preço de Venda (R$)</label>
+        <input type="number" id="produtoPreco">
+
+        <label>Quantidade em Estoque</label>
+        <input type="number" id="produtoQuantidade">
+
+        <button onclick="salvarProduto()">Salvar Produto</button>
+
+        <div class="table-container">
+          <table>
+            <thead>
+              <tr>
+                <th>Produto</th>
+                <th>SKU</th>
+                <th>Custo</th>
+                <th>Venda</th>
+                <th>Estoque</th>
+                <th>Ação</th>
+              </tr>
+            </thead>
+            <tbody id="tabelaProdutos"></tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+
+    <!-- PEDIDOS -->
+    <section id="pedidos" class="pagina">
+      <div class="container">
+        <h1>Pedidos Shopee</h1>
+
+        <label>Número do Pedido</label>
+        <input type="text" id="pedidoNumero">
+
+        <label>Produto</label>
+        <select id="pedidoProduto"></select>
+
+        <label>Quantidade Vendida</label>
+        <input type="number" id="pedidoQuantidade">
+
+        <label>Valor Total (R$)</label>
+        <input type="number" id="pedidoValor">
+
+        <label>Data da Venda</label>
+        <input type="date" id="pedidoDataVenda">
+
+        <label>Data Prevista de Entrega</label>
+        <input type="date" id="pedidoDataEntrega">
+
+        <label>Status</label>
+        <select id="pedidoStatus">
+          <option>Pendente</option>
+          <option>Em produção</option>
+          <option>Enviado</option>
+          <option>Entregue</option>
+          <option>Cancelado</option>
+        </select>
+
+        <button onclick="salvarPedido()">Salvar Pedido</button>
+
+        <div class="table-container">
+          <table>
+            <thead>
+              <tr>
+                <th>Pedido</th>
+                <th>Produto</th>
+                <th>Qtd</th>
+                <th>Valor</th>
+                <th>Venda</th>
+                <th>Entrega</th>
+                <th>Status</th>
+                <th>Ação</th>
+              </tr>
+            </thead>
+            <tbody id="tabelaPedidos"></tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+
+  </main>
 </div>
 
 <script src="script.js"></script>
