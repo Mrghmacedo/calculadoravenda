@@ -7,78 +7,72 @@
 body {
   font-family: Arial, Helvetica, sans-serif;
   background: #f4f6f9;
-  color: #333;
+  color: #222;
 }
 
-/* LAYOUT PRINCIPAL */
 .layout {
-  display: flex;
+  display: flex !important;
   min-height: 100vh;
 }
 
-/* MENU LATERAL FIXO */
+/* MENU LATERAL */
 .sidebar {
-  width: 260px;
-  min-width: 260px;
-  height: 100vh;
-  position: fixed;
-  top: 0;
-  left: 0;
-  background: #ee4d2d;
-  color: #fff;
-  padding: 25px 18px;
-  z-index: 1000;
+  width: 260px !important;
+  min-width: 260px !important;
+  height: 100vh !important;
+  position: fixed !important;
+  top: 0 !important;
+  left: 0 !important;
+  background: #ee4d2d !important;
+  padding: 24px 18px !important;
+  color: white !important;
 }
 
 .logo {
-  margin-bottom: 30px;
   text-align: center;
+  margin-bottom: 30px;
 }
 
 .logo h2 {
   font-size: 22px;
-  margin-bottom: 6px;
 }
 
 .logo p {
   font-size: 14px;
-  opacity: 0.9;
+  margin-top: 6px;
 }
 
-/* BOTÕES DO MENU */
 .menu {
-  display: flex;
-  flex-direction: column;
-  gap: 12px;
+  display: flex !important;
+  flex-direction: column !important;
+  gap: 12px !important;
 }
 
 .menu-btn {
-  width: 100%;
-  padding: 14px;
-  border: none;
-  border-radius: 10px;
-  background: rgba(255,255,255,0.15);
-  color: #fff;
-  text-align: left;
-  font-size: 15px;
-  font-weight: bold;
-  cursor: pointer;
+  width: 100% !important;
+  padding: 14px !important;
+  border: none !important;
+  border-radius: 10px !important;
+  background: rgba(255,255,255,0.18) !important;
+  color: white !important;
+  font-weight: bold !important;
+  text-align: left !important;
+  cursor: pointer !important;
 }
 
-.menu-btn:hover,
-.menu-btn.active {
-  background: #fff;
-  color: #ee4d2d;
+.menu-btn.active,
+.menu-btn:hover {
+  background: white !important;
+  color: #ee4d2d !important;
 }
 
-/* CONTEÚDO AO LADO DO MENU */
+/* CONTEÚDO */
 .conteudo {
-  margin-left: 260px;
-  width: calc(100% - 260px);
-  padding: 30px;
+  margin-left: 260px !important;
+  width: calc(100% - 260px) !important;
+  padding: 30px !important;
 }
 
-/* TOPO */
 .topbar {
   margin-bottom: 25px;
 }
@@ -90,24 +84,14 @@ body {
 
 /* PÁGINAS */
 .pagina {
-  display: none;
+  display: none !important;
 }
 
 .pagina.ativa {
-  display: block;
+  display: block !important;
 }
 
-/* CONTAINER */
-.container {
-  max-width: 1100px;
-  background: #fff;
-  padding: 25px;
-  border-radius: 14px;
-  box-shadow: 0 5px 18px rgba(0,0,0,0.08);
-  margin-bottom: 25px;
-}
-
-/* DASHBOARD */
+/* CARDS */
 .cards {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
@@ -115,23 +99,22 @@ body {
 }
 
 .card {
-  background: #fff;
-  padding: 22px;
-  border-radius: 12px;
-  border-left: 5px solid #ee4d2d;
+  background: white;
+  padding: 24px;
+  border-radius: 14px;
   box-shadow: 0 5px 18px rgba(0,0,0,0.08);
+  border-left: 5px solid #ee4d2d;
 }
 
 .card h3 {
-  font-size: 15px;
   color: #777;
-  margin-bottom: 10px;
+  font-size: 15px;
+  margin-bottom: 8px;
 }
 
 .card p {
   font-size: 28px;
   font-weight: bold;
-  color: #333;
 }
 
 .card.destaque {
@@ -142,8 +125,16 @@ body {
   color: #2e7d32;
 }
 
-/* TÍTULOS */
-h1 {
+/* CONTAINER FORM */
+.container {
+  max-width: 800px;
+  background: white;
+  padding: 26px;
+  border-radius: 16px;
+  box-shadow: 0 5px 18px rgba(0,0,0,0.08);
+}
+
+.container h1 {
   color: #ee4d2d;
   margin-bottom: 20px;
 }
@@ -152,32 +143,8 @@ h2 {
   margin-top: 20px;
   margin-bottom: 10px;
   font-size: 16px;
-  padding-left: 8px;
-  border-left: 4px solid transparent;
-  text-transform: uppercase;
 }
 
-.bloco-material {
-  color: #546e7a;
-  border-left-color: #546e7a;
-}
-
-.bloco-lucro {
-  color: #2e7d32;
-  border-left-color: #2e7d32;
-}
-
-.bloco-shopee {
-  color: #e53935;
-  border-left-color: #e53935;
-}
-
-.bloco-venda {
-  color: #1e88e5;
-  border-left-color: #1e88e5;
-}
-
-/* CAMPOS */
 label {
   display: block;
   font-weight: bold;
@@ -190,62 +157,28 @@ select {
   width: 100%;
   padding: 11px;
   border: 1px solid #ccc;
-  border-radius: 7px;
-  font-size: 14px;
+  border-radius: 8px;
 }
 
-/* BOTÃO NORMAL */
-.container > button {
+.container button {
   width: 100%;
   margin-top: 20px;
-  padding: 13px;
+  padding: 14px;
   border: none;
-  border-radius: 8px;
+  border-radius: 10px;
   background: #ee4d2d;
-  color: #fff;
+  color: white;
   font-weight: bold;
-  font-size: 15px;
   cursor: pointer;
 }
 
-.container > button:hover {
-  background: #d84326;
-}
-
-/* RESULTADO */
 .resultado {
   margin-top: 20px;
   padding: 18px;
   background: #f9f9f9;
   border-radius: 10px;
-  line-height: 1.7;
 }
 
-.resultado .preco {
-  color: #1e88e5;
-  font-weight: bold;
-}
-
-.resultado .taxas {
-  color: #e53935;
-  font-weight: bold;
-}
-
-.resultado .liquido {
-  color: #6a1b9a;
-  font-weight: bold;
-}
-
-.resultado .lucro {
-  color: #2e7d32;
-  font-size: 18px;
-  font-weight: bold;
-  margin-top: 10px;
-  padding-top: 10px;
-  border-top: 1px dashed #ccc;
-}
-
-/* TABELAS */
 .table-container {
   margin-top: 25px;
   overflow-x: auto;
@@ -256,9 +189,9 @@ table {
   border-collapse: collapse;
 }
 
-thead {
+th {
   background: #ee4d2d;
-  color: #fff;
+  color: white;
 }
 
 th,
@@ -268,35 +201,29 @@ td {
   text-align: center;
 }
 
-tbody tr:nth-child(even) {
-  background: #f9f9f9;
-}
-
 .btn-excluir {
-  padding: 8px 10px;
-  background: #e53935;
-  color: #fff;
-  border: none;
-  border-radius: 6px;
-  cursor: pointer;
+  background: #e53935 !important;
+  color: white !important;
+  padding: 8px 10px !important;
+  border-radius: 6px !important;
 }
 
 /* MOBILE */
 @media (max-width: 800px) {
-  .sidebar {
-    position: relative;
-    width: 100%;
-    height: auto;
+  .layout {
+    flex-direction: column !important;
   }
 
-  .layout {
-    flex-direction: column;
+  .sidebar {
+    position: relative !important;
+    width: 100% !important;
+    height: auto !important;
   }
 
   .conteudo {
-    margin-left: 0;
-    width: 100%;
-    padding: 15px;
+    margin-left: 0 !important;
+    width: 100% !important;
+    padding: 15px !important;
   }
 
   .cards {
