@@ -1,3 +1,20 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: Arial, Helvetica, sans-serif;
+  background: #f4f6f9;
+  color: #222;
+}
+
+.layout {
+  display: flex !important;
+  min-height: 100vh;
+}
+
 /* ===== CORES NOVAS ===== */
 :root {
   --primary: #0d3b66;
