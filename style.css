@@ -4,38 +4,40 @@
   box-sizing: border-box;
 }
 
-/* BODY */
 body {
   font-family: Arial, Helvetica, sans-serif;
   background: #f4f6f9;
   color: #333;
 }
 
-/* LAYOUT */
+/* LAYOUT PRINCIPAL */
 .layout {
   display: flex;
   min-height: 100vh;
 }
 
-/* MENU LATERAL */
+/* MENU LATERAL FIXO */
 .sidebar {
   width: 260px;
-  background: linear-gradient(180deg, #ee4d2d, #d84326);
-  color: white;
-  padding: 25px 20px;
+  min-width: 260px;
+  height: 100vh;
   position: fixed;
-  height: 100%;
-  left: 0;
   top: 0;
+  left: 0;
+  background: #ee4d2d;
+  color: #fff;
+  padding: 25px 18px;
+  z-index: 1000;
 }
 
 .logo {
-  margin-bottom: 40px;
+  margin-bottom: 30px;
+  text-align: center;
 }
 
 .logo h2 {
-  font-size: 24px;
-  margin-bottom: 5px;
+  font-size: 22px;
+  margin-bottom: 6px;
 }
 
 .logo p {
@@ -43,7 +45,7 @@ body {
   opacity: 0.9;
 }
 
-/* MENU */
+/* BOTÕES DO MENU */
 .menu {
   display: flex;
   flex-direction: column;
@@ -54,37 +56,36 @@ body {
   width: 100%;
   padding: 14px;
   border: none;
-  border-radius: 8px;
-  background: rgba(255,255,255,0.12);
-  color: white;
+  border-radius: 10px;
+  background: rgba(255,255,255,0.15);
+  color: #fff;
   text-align: left;
   font-size: 15px;
-  cursor: pointer;
-  transition: 0.3s;
   font-weight: bold;
+  cursor: pointer;
 }
 
 .menu-btn:hover,
 .menu-btn.active {
-  background: white;
+  background: #fff;
   color: #ee4d2d;
 }
 
-/* CONTEÚDO */
+/* CONTEÚDO AO LADO DO MENU */
 .conteudo {
   margin-left: 260px;
-  flex: 1;
+  width: calc(100% - 260px);
   padding: 30px;
 }
 
 /* TOPO */
 .topbar {
-  margin-bottom: 30px;
+  margin-bottom: 25px;
 }
 
 .topbar h1 {
-  font-size: 30px;
   color: #ee4d2d;
+  font-size: 30px;
 }
 
 /* PÁGINAS */
@@ -98,30 +99,31 @@ body {
 
 /* CONTAINER */
 .container {
-  background: white;
+  max-width: 1100px;
+  background: #fff;
   padding: 25px;
   border-radius: 14px;
-  box-shadow: 0 6px 18px rgba(0,0,0,0.08);
-  margin-bottom: 30px;
+  box-shadow: 0 5px 18px rgba(0,0,0,0.08);
+  margin-bottom: 25px;
 }
 
-/* DASHBOARD CARDS */
+/* DASHBOARD */
 .cards {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  grid-template-columns: repeat(4, 1fr);
   gap: 20px;
 }
 
 .card {
-  background: white;
-  padding: 25px;
+  background: #fff;
+  padding: 22px;
   border-radius: 12px;
-  box-shadow: 0 4px 14px rgba(0,0,0,0.08);
   border-left: 5px solid #ee4d2d;
+  box-shadow: 0 5px 18px rgba(0,0,0,0.08);
 }
 
 .card h3 {
-  font-size: 16px;
+  font-size: 15px;
   color: #777;
   margin-bottom: 10px;
 }
@@ -142,9 +144,8 @@ body {
 
 /* TÍTULOS */
 h1 {
-  text-align: center;
   color: #ee4d2d;
-  margin-bottom: 25px;
+  margin-bottom: 20px;
 }
 
 h2 {
@@ -176,57 +177,53 @@ h2 {
   border-left-color: #1e88e5;
 }
 
-/* LABEL */
+/* CAMPOS */
 label {
-  font-weight: bold;
   display: block;
+  font-weight: bold;
   margin-top: 12px;
   margin-bottom: 5px;
 }
 
-/* INPUTS */
 input,
 select {
   width: 100%;
   padding: 11px;
   border: 1px solid #ccc;
-  border-radius: 6px;
-  margin-bottom: 8px;
+  border-radius: 7px;
   font-size: 14px;
 }
 
-/* BOTÕES */
-button {
+/* BOTÃO NORMAL */
+.container > button {
   width: 100%;
-  padding: 14px;
-  margin-top: 18px;
-  background: #ee4d2d;
-  color: white;
+  margin-top: 20px;
+  padding: 13px;
   border: none;
   border-radius: 8px;
-  font-size: 15px;
+  background: #ee4d2d;
+  color: #fff;
   font-weight: bold;
+  font-size: 15px;
   cursor: pointer;
-  transition: 0.3s;
 }
 
-button:hover {
+.container > button:hover {
   background: #d84326;
 }
 
 /* RESULTADO */
 .resultado {
-  margin-top: 25px;
-  padding: 20px;
+  margin-top: 20px;
+  padding: 18px;
   background: #f9f9f9;
   border-radius: 10px;
-  line-height: 1.8;
+  line-height: 1.7;
 }
 
 .resultado .preco {
   color: #1e88e5;
   font-weight: bold;
-  font-size: 18px;
 }
 
 .resultado .taxas {
@@ -241,9 +238,9 @@ button:hover {
 
 .resultado .lucro {
   color: #2e7d32;
-  font-size: 20px;
+  font-size: 18px;
   font-weight: bold;
-  margin-top: 12px;
+  margin-top: 10px;
   padding-top: 10px;
   border-top: 1px dashed #ccc;
 }
@@ -257,12 +254,11 @@ button:hover {
 table {
   width: 100%;
   border-collapse: collapse;
-  margin-top: 15px;
 }
 
 thead {
   background: #ee4d2d;
-  color: white;
+  color: #fff;
 }
 
 th,
@@ -276,54 +272,34 @@ tbody tr:nth-child(even) {
   background: #f9f9f9;
 }
 
-/* BOTÃO EXCLUIR */
 .btn-excluir {
-  background: #e53935;
   padding: 8px 10px;
-  border-radius: 5px;
-  font-size: 13px;
+  background: #e53935;
+  color: #fff;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
 }
 
-.btn-excluir:hover {
-  background: #c62828;
-}
-
-/* RESPONSIVO */
-@media (max-width: 900px) {
+/* MOBILE */
+@media (max-width: 800px) {
   .sidebar {
+    position: relative;
     width: 100%;
     height: auto;
-    position: relative;
-  }
-
-  .conteudo {
-    margin-left: 0;
   }
 
   .layout {
     flex-direction: column;
   }
 
-  .menu {
-    flex-direction: row;
-    flex-wrap: wrap;
-  }
-
-  .menu-btn {
-    text-align: center;
-  }
-}
-
-@media (max-width: 600px) {
   .conteudo {
+    margin-left: 0;
+    width: 100%;
     padding: 15px;
   }
 
-  .card p {
-    font-size: 22px;
-  }
-
-  h1 {
-    font-size: 24px;
+  .cards {
+    grid-template-columns: 1fr;
   }
 }
