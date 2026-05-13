@@ -1,6 +1,11 @@
 // =========================
 // NAVEGAÇÃO ENTRE PÁGINAS
 // =========================
+const SUPABASE_URL = "https://xsyzptgcpxjitkjcsqnk.supabase.co";
+const SUPABASE_ANON_KEY = "COsb_publishable_CSOy_gYLE6wRROlKjtAlVg_bxEFfF_Z";
+
+const supabase = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
+
 function abrirPagina(paginaId, botao) {
   document.querySelectorAll('.pagina').forEach(pagina => {
     pagina.classList.remove('ativa');
