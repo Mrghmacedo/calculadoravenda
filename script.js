@@ -1,16 +1,14 @@
-// =========================
-// NAVEGAÇÃO ENTRE PÁGINAS
-// =========================
 const SUPABASE_URL = "https://xsyzptgcpxjitkjcsqnk.supabase.co";
 const SUPABASE_ANON_KEY = "COsb_publishable_CSOy_gYLE6wRROlKjtAlVg_bxEFfF_Z";
 
-
-const supabase = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
-
+window.db = window.db || window.supabase.createClient(
+  SUPABASE_URL,
+  SUPABASE_ANON_KEY
+);
 // =========================
 // NAVEGAÇÃO
 // =========================
-function abrirPagina(paginaId, botao) {
+window.abrirPagina = function(paginaId, botao) {
   document.querySelectorAll(".pagina").forEach(p => p.classList.remove("ativa"));
   document.getElementById(paginaId).classList.add("ativa");
 
@@ -26,7 +24,7 @@ function abrirPagina(paginaId, botao) {
 
   document.getElementById("tituloPagina").innerText = titulos[paginaId];
   atualizarDashboard();
-}
+};
 
 // =========================
 // CALCULADORA
@@ -88,7 +86,7 @@ async function salvarProduto() {
     return;
   }
 
-  const { error } = await supabase.from("produtos").insert([
+  const { error } = await window.supabaseClient.from("produtos").insert([
     {
       nome,
       sku,
@@ -207,7 +205,7 @@ async function salvarPedido() {
     return;
   }
 
-  const { error } = await supabase.from("pedidos").insert([
+  const { error } = await window.supabaseClient.from("pedidos").insert([
     {
       numero_pedido: numeroPedido,
       produto_id: produtoId,
@@ -293,8 +291,8 @@ async function excluirPedido(id) {
 // DASHBOARD
 // =========================
 async function atualizarDashboard() {
-  const { data: produtos } = await supabase.from("produtos").select("*");
-  const { data: pedidos } = await supabase.from("pedidos").select("*");
+  const { data: produtos } = await window.supabaseClient.from("produtos").select("*");
+  const { data: pedidos } = await window.supabaseClient.fromfrom("pedidos").select("*");
 
   const listaProdutos = produtos || [];
   const listaPedidos = pedidos || [];
