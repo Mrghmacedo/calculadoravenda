@@ -5,15 +5,23 @@ window.db = window.db || window.supabase.createClient(
   SUPABASE_URL,
   SUPABASE_ANON_KEY
 );
+
 // =========================
 // NAVEGAÇÃO
 // =========================
-window.abrirPagina = function(paginaId, botao) {
+window.abrirPagina = function (paginaId, botao) {
   document.querySelectorAll(".pagina").forEach(p => p.classList.remove("ativa"));
-  document.getElementById(paginaId).classList.add("ativa");
+
+  const pagina = document.getElementById(paginaId);
+  if (pagina) {
+    pagina.classList.add("ativa");
+  }
 
   document.querySelectorAll(".menu-btn").forEach(btn => btn.classList.remove("active"));
-  botao.classList.add("active");
+
+  if (botao) {
+    botao.classList.add("active");
+  }
 
   const titulos = {
     dashboard: "Dashboard",
@@ -22,14 +30,18 @@ window.abrirPagina = function(paginaId, botao) {
     pedidos: "Pedidos Shopee"
   };
 
-  document.getElementById("tituloPagina").innerText = titulos[paginaId];
+  const titulo = document.getElementById("tituloPagina");
+  if (titulo) {
+    titulo.innerText = titulos[paginaId] || "Dashboard";
+  }
+
   atualizarDashboard();
 };
 
 // =========================
 // CALCULADORA
 // =========================
-function calcular() {
+window.calcular = function () {
   const peso = parseFloat(document.getElementById("peso").value) || 0;
   const valorKg = parseFloat(document.getElementById("valorKg").value) || 0;
   const embalagem = parseFloat(document.getElementById("embalagem").value) || 0;
@@ -69,12 +81,12 @@ function calcular() {
       <strong>Lucro Final:</strong> R$ ${lucroFinal.toFixed(2)}
     </div>
   `;
-}
+};
 
 // =========================
 // PRODUTOS
 // =========================
-async function salvarProduto() {
+window.salvarProduto = async function () {
   const nome = document.getElementById("produtoNome").value.trim();
   const sku = document.getElementById("produtoSku").value.trim();
   const custo = parseFloat(document.getElementById("produtoCusto").value) || 0;
@@ -86,14 +98,8 @@ async function salvarProduto() {
     return;
   }
 
-  const { error } = await window.supabaseClient.from("produtos").insert([
-    {
-      nome,
-      sku,
-      custo,
-      preco,
-      quantidade
-    }
+  const { error } = await window.db.from("produtos").insert([
+    { nome, sku, custo, preco, quantidade }
   ]);
 
   if (error) {
@@ -112,13 +118,15 @@ async function salvarProduto() {
   await atualizarDashboard();
 
   alert("Produto salvo com sucesso!");
-}
+};
 
 async function carregarProdutos() {
   const tabela = document.getElementById("tabelaProdutos");
+  if (!tabela) return;
+
   tabela.innerHTML = "";
 
-  const { data, error } = await supabase
+  const { data, error } = await window.db
     .from("produtos")
     .select("*")
     .order("criado_em", { ascending: false });
@@ -146,10 +154,10 @@ async function carregarProdutos() {
   });
 }
 
-async function excluirProduto(id) {
+window.excluirProduto = async function (id) {
   if (!confirm("Deseja excluir este produto?")) return;
 
-  const { error } = await supabase
+  const { error } = await window.db
     .from("produtos")
     .delete()
     .eq("id", id);
@@ -162,16 +170,18 @@ async function excluirProduto(id) {
   await carregarProdutos();
   await atualizarSelectProdutos();
   await atualizarDashboard();
-}
+};
 
 // =========================
 // SELECT PRODUTOS
 // =========================
 async function atualizarSelectProdutos() {
   const select = document.getElementById("pedidoProduto");
+  if (!select) return;
+
   select.innerHTML = `<option value="">Selecione um produto</option>`;
 
-  const { data, error } = await supabase
+  const { data, error } = await window.db
     .from("produtos")
     .select("id, nome")
     .order("nome", { ascending: true });
@@ -190,7 +200,7 @@ async function atualizarSelectProdutos() {
 // =========================
 // PEDIDOS
 // =========================
-async function salvarPedido() {
+window.salvarPedido = async function () {
   const numeroPedido = document.getElementById("pedidoNumero").value.trim();
   const produtoId = document.getElementById("pedidoProduto").value;
   const produtoNome = document.getElementById("pedidoProduto").selectedOptions[0]?.dataset.nome || "";
@@ -205,7 +215,7 @@ async function salvarPedido() {
     return;
   }
 
-  const { error } = await window.supabaseClient.from("pedidos").insert([
+  const { error } = await window.db.from("pedidos").insert([
     {
       numero_pedido: numeroPedido,
       produto_id: produtoId,
@@ -234,13 +244,15 @@ async function salvarPedido() {
   await atualizarDashboard();
 
   alert("Pedido salvo com sucesso!");
-}
+};
 
 async function carregarPedidos() {
   const tabela = document.getElementById("tabelaPedidos");
+  if (!tabela) return;
+
   tabela.innerHTML = "";
 
-  const { data, error } = await supabase
+  const { data, error } = await window.db
     .from("pedidos")
     .select("*")
     .order("criado_em", { ascending: false });
@@ -270,10 +282,10 @@ async function carregarPedidos() {
   });
 }
 
-async function excluirPedido(id) {
+window.excluirPedido = async function (id) {
   if (!confirm("Deseja excluir este pedido?")) return;
 
-  const { error } = await supabase
+  const { error } = await window.db
     .from("pedidos")
     .delete()
     .eq("id", id);
@@ -285,14 +297,21 @@ async function excluirPedido(id) {
 
   await carregarPedidos();
   await atualizarDashboard();
-}
+};
 
 // =========================
 // DASHBOARD
 // =========================
 async function atualizarDashboard() {
-  const { data: produtos } = await window.supabaseClient.from("produtos").select("*");
-  const { data: pedidos } = await window.supabaseClient.fromfrom("pedidos").select("*");
+  const totalProdutosEl = document.getElementById("totalProdutos");
+  const totalPedidosEl = document.getElementById("totalPedidos");
+  const totalQuantidadeEl = document.getElementById("totalQuantidade");
+  const totalFaturamentoEl = document.getElementById("totalFaturamento");
+
+  if (!totalProdutosEl || !totalPedidosEl || !totalQuantidadeEl || !totalFaturamentoEl) return;
+
+  const { data: produtos } = await window.db.from("produtos").select("*");
+  const { data: pedidos } = await window.db.from("pedidos").select("*");
 
   const listaProdutos = produtos || [];
   const listaPedidos = pedidos || [];
@@ -305,11 +324,10 @@ async function atualizarDashboard() {
     totalFaturamento += Number(pedido.valor_total || 0);
   });
 
-  document.getElementById("totalProdutos").innerText = listaProdutos.length;
-  document.getElementById("totalPedidos").innerText = listaPedidos.length;
-  document.getElementById("totalQuantidade").innerText = totalQuantidade;
-  document.getElementById("totalFaturamento").innerText =
-    `R$ ${totalFaturamento.toFixed(2)}`;
+  totalProdutosEl.innerText = listaProdutos.length;
+  totalPedidosEl.innerText = listaPedidos.length;
+  totalQuantidadeEl.innerText = totalQuantidade;
+  totalFaturamentoEl.innerText = `R$ ${totalFaturamento.toFixed(2)}`;
 }
 
 // =========================
